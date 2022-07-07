@@ -42,11 +42,14 @@ then
     fi
 
 else
-    echo -e "$green*** $1 ***$blank is already installed."
-    exit
+    echo -e "$green*** $1 ***$blank is already installed."
 fi
 }
 
 
 # calls check_file function
-check_file "cronic" # cronic is only used for testing
+check_file "cromic" # cronic is only used for testing
+
+check_file "nvim"
+check_file "fusuma"
+check_file "zsh"
