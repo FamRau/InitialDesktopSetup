@@ -9,13 +9,10 @@
 #########################################################
 
 
-use: sudo ./chk_install
-
 # color definitions
 green="\033[0;32m"
 red="\033[0;31m"
 blank="\033[0m"
-
 
 
 #### FUNCTION BEGIN
@@ -49,6 +46,7 @@ else
     exit
 fi
 }
+
 
 # calls check_file function
 check_file "cronic" # cronic is only used for testing
