@@ -10,6 +10,6 @@ This script is used to set up a new Linux installation with my programs and sett
 ## TODO:
 - [x] Write a function to check if a program is installed. If not, ask user if it should be installed.
 - [x] Extend the script to use an external file with all programs to be installed.
-- [x] Implement a menu with all option
+- [x] Implement a menu with all options
 - [ ] Implement function to copy all relevant system setting files to an archive. 
 - [ ] Implement function to copy the settings files from an archive into the new home folder.
