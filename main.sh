@@ -9,9 +9,8 @@
 #########################################################
 
 
-. installFiles.sh
-. getArchive.sh
-. addArchive.sh
+. install_files.sh
+. apt_archive.sh
 
 show_menu(){
     #color definitions
