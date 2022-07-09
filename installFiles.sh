@@ -1,18 +1,14 @@
 #! /usr/bin/bash
 
-########## Initial Desktop Setup ########################
-# Script to setup a new computer
-# by Gerhard Rauniak
-# Juli 2022
-# 
-# README.md https://github.com/FamRau/InitialDesktopSetup
+########## install files ########################
+# Script check if prgrams are installed and install them 
 #########################################################
 
 
 # color definitions
-green="\033[0;32m"
-red="\033[0;31m"
-blank="\033[0m"
+filename="\033[0;32m"
+failure="\033[0;31m"
+normal="\033[0m"
 
 # Textfile with programs to install 
 prog2install="./prog2install.txt"
@@ -28,22 +24,22 @@ prog2install="./prog2install.txt"
 check_file (){
     if ! command -v $1 &> /dev/null # check if programm is callable. It not, it's not installed.
     then                            # if it's not installed, ask user if ith should be installed.
-        echo -e "$red*** $1 ***$blank could not be found. Would yo install it? (Y/N)"
+        printf "$failure*** $1 ***$normal could not be found. Would yo install it? (Y/N)"
         read answer
     while [[ "$answer" != "y" ]] && [[ "$answer" != "n" ]] #check if user input is y or no 
         do
-            echo "Only y or n!"
+            printf "Only y or n!"
             read answer
         done
 
         if [[ "$answer" == "y" ]]
         then
             apt install $1  
-            echo -e "$green*** $1 ***$blank successfully installed"
+            printf "$filename*** $1 ***$normal successfully installed"
         fi   
 
     else                            #if it's already installed, inform user
-        echo -e "$green*** $1 ***$blank is already installed."
+        printf "$filename*** $1 ***$normal is already installed.\\n"
     fi
 }
 
@@ -64,4 +60,4 @@ read_progfile () {
 
 
 # calls check_file function
-read_progfile "$prog2install"
+#read_progfile "$prog2install"
