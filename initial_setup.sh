@@ -1,7 +1,6 @@
+
 #! /usr/bin/bash
 
-set -x
-set -v
 ########## Initial Desktop Setup ########################
 # Script to setup a new computer
 # by Gerhard Rauniak
@@ -16,59 +15,56 @@ green="\033[0;32m"
 red="\033[0;31m"
 blank="\033[0m"
 
-# Textfile with programs to install
-prog_file="./prog_to_install.txt"
+# Textfile with programs to install 
+prog2install="./prog2install.txt"
+
 
 #### FUNCTION BEGIN
-# Checks if program is installed
-# If not, user is asked wether to install it or not
+# Checks if program is installed. If not, user is asked wether to install it or not
 # ARGUMENT:
-#       Name of the program to be checked
+#       It uses the output of "IFS= read -r -u3 line" in the function read_progfile
 # OUTPUT:
-#       Install the program if it's not installed
-#       It installed, end the script.        
+#       Install the program if it's not installed  
 ### FUNCTION END
-check_file () {
-if ! command -v $1 &> /dev/null 
-then
-    echo -e "$red*** $1 ***$blank could not be found. Do you want to install it y/n?"
-    read answer 
-    while [ "$answer" != "y" ] && [ "$answer" != "n" ] #check if user input is y or no 
-    do
-        echo "Only y or n!"
+check_file (){
+    if ! command -v $1 &> /dev/null # check if programm is callable. It not, it's not installed.
+    then                            # if it's not installed, ask user if ith should be installed.
+        echo -e "$red*** $1 ***$blank could not be found. Would yo install it? (Y/N)"
         read answer
-    done
+    while [[ "$answer" != "y" ]] && [[ "$answer" != "n" ]] #check if user input is y or no 
+        do
+            echo "Only y or n!"
+            read answer
+        done
 
-    if [ $answer == "y" ]
-    then
-        apt install $1  
-        echo -e "$green*** $1 ***$blank successfully installed"
+        if [[ "$answer" == "y" ]]
+        then
+            apt install $1  
+            echo -e "$green*** $1 ***$blank successfully installed"
+        fi   
+
+    else                            #if it's already installed, inform user
+        echo -e "$green*** $1 ***$blank is already installed."
     fi
-
-else
-    echo -e "$green*** $1 ***$blank is already installed."
-fi
 }
 
 
 #### FUNCTION BEGIN
-# Function to read programs prog_to_install.txt and use 
-# it as argument for check_file function
-# ARGUMENT:
-#       Name of the text file with prog to install
+# Function to read prog2install line by line and use 
+#       it as argument for the check_file function
+# ARGUMENT
+#       variable prog2install which directs to prog2install.txt with 
+#       all programms to be installed
 # OUTPUT:
-#       Runs check_file function with programs as argument        
-### FUNCTION EN
+#       Runs check_file function      
+### FUNCTION END
 read_progfile () {
-    while IFS= read -r line
+    while IFS= read -r -u3 line     # reads the file line by line
     do
         check_file "$line"
-    done < "$1"
+    done 3< "$1"
 }
 
 
 # calls check_file function
-#check_file "cromic" # cronic is only used for testing
-
-read_progfile "$prog_file"
-
+read_progfile "$prog2install"

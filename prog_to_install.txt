@@ -1,4 +1,0 @@
-nvim
-fusuma 
-zsh
-cromic
