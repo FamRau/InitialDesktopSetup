@@ -1,12 +1,12 @@
 #!/bin/bash
 
-########## Initial Desktop Setup ########################
+#--------------- Initial Desktop Setup -----------------------
 # Script to setup a new computer environment
 # by Gerhard Rauniak
 # Juli 2022
 # 
 # README.md https://github.com/FamRau/InitialDesktopSetup
-#########################################################
+#-------------------------------------------------------------
 
 
 . install_files.sh
