@@ -19,7 +19,7 @@ blank="\033[0m"
 prog2install="./prog2install.txt"
 
 
-#### FUNCTION BEGIN
+#### FUNCTION check_file BEGIN
 # Checks if program is installed. If not, user is asked wether to install it or not
 # ARGUMENT:
 #       It uses the output of "IFS= read -r -u3 line" in the function read_progfile
@@ -49,12 +49,10 @@ check_file (){
 }
 
 
-#### FUNCTION BEGIN
-# Function to read prog2install line by line and use 
-#       it as argument for the check_file function
+#### FUNCTION read_progile BEGIN
+#   Function to read prog2install line by line and use it as argument for the check_file function
 # ARGUMENT
-#       variable prog2install which directs to prog2install.txt with 
-#       all programms to be installed
+#   variable prog2install which directs to prog2install.txt with all programms to be installed
 # OUTPUT:
 #       Runs check_file function      
 ### FUNCTION END
